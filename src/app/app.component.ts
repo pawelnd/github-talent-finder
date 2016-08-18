@@ -4,7 +4,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
-
+import 'jquery';
+import "bootstrap/js/dropdown";
 /*
  * App Component
  * Top Level Component
@@ -12,10 +13,27 @@ import { AppState } from './app.service';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.style.css'
+  styles: [
+    require('./app.style.less').toString()
   ],
   template: `
+   <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+    <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+     <span class="glyphicon glyphicon-align-left" aria-hidden="true">
+  <!-- Single button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Action <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div>
+
       <router-outlet></router-outlet>
   `
 })

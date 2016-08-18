@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { AppState } from '../app.service';
 
 @Component({
-  selector: 'home',  // <home></home>
+  selector: 'home',
   pipes: [ ],
-  styleUrls: [ './home.style.css' ],
+  styles: [
+    require('./home.style.less').toString()
+  ],
   templateUrl: './home.template.html'
 })
 export class HomeComponent {
