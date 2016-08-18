@@ -1,9 +1,12 @@
 import { WebpackAsyncRoute } from '@angularclass/webpack-toolkit';
 import { RouterConfig } from '@angular/router';
-import { Home } from './home';
-
-import { DataResolver } from './app.resolver';
+import { HomeComponent } from './home/home.component';
 
 export const routes: RouterConfig = [
-  { path: '', component: Home },
+  { path: 'home', component: HomeComponent },
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ];
