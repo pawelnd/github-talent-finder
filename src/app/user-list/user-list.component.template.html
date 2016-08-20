@@ -1,0 +1,25 @@
+<div *ngIf="!users"><img src="assets/loading.gif"></div>
+<div *ngIf="users">
+  <div *ngFor="let user of users" class="row">
+    <div class="col-md-2">
+      <div class="thumbnail">
+        <img [src]="user.avatar_url" width="150px"  height="150px"/>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4><a href="#">{{user.login}}</a>
+          </h4>
+          <p>Contributions: {{user.contributions}}</p>
+          <p>Published repositories: {{user.public_repos}}</p>
+          <p>Published gists: {{user.public_gists}}</p>
+          <p>Followers: {{user.followers}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

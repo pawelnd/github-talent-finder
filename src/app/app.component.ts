@@ -4,7 +4,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AppState } from './app.service';
 import 'jquery';
-import { AlertComponent, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstrap';
 /*
  * App Component
  * Top Level Component
@@ -15,11 +14,7 @@ import { AlertComponent, DATEPICKER_DIRECTIVES } from 'ng2-bootstrap/ng2-bootstr
   styles: [
     require('./app.style.less').toString()
   ],
-  templateUrl: './app.component.template.html',
-  directives: [
-    AlertComponent,
-    DATEPICKER_DIRECTIVES
-  ]
+  templateUrl: './app.component.template.html'
 })
 export class App {
 
@@ -27,9 +22,6 @@ export class App {
     public appState: AppState) {
 
   }
-
-  localState = { value: '' };
-  date: Date = new Date();
 
   ngOnInit() {
     console.log('Initial App State', this.appState.state);

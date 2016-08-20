@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppState } from '../app.service';
+import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
   selector: 'home',
@@ -7,9 +7,12 @@ import { AppState } from '../app.service';
   styles: [
     require('./home.style.less').toString()
   ],
-  templateUrl: './home.template.html'
+  templateUrl: './home.template.html',
+  directives: [
+    UserListComponent
+  ]
 })
 export class HomeComponent {
-  constructor(public appState: AppState) {
+  constructor() {
   }
 }
