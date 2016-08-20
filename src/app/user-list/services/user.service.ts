@@ -40,7 +40,7 @@ export class UserService extends BaseService {
   }
 
   /**
-  * It sum contributions for all repositories
+  * It sum contributions for each user for all repositories
   * */
   private mergeUsersFromDifferentRepositories(usersOfRepositories:Array<User[]>):User[]{
     let usersCollection:User[];
@@ -62,7 +62,10 @@ export class UserService extends BaseService {
     return usersCollection;
   }
 
-
+  /**
+   * It iterates over collection of users and it adds to {@link User}
+   * its statistics like amount of followers for example
+  * */
   private fetchStatistics(users:User[]):Promise<User[]>{
     let statisticResolvers = new Array();
     for(let user of users){
