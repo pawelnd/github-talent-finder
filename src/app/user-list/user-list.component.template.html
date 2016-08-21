@@ -14,12 +14,15 @@
         <div class="col-md-10">
           <div class="thumbnail">
             <div class="caption">
-              <h4><a href="#">{{user.login}}</a>
+              <button type="button" class="btn btn btn-primary pull-right" (click)="showDetails(user)">Show details</button>
+              <h4>
+                <a [href]="user.html_url" target="_blank">{{user.login}}</a>
               </h4>
               <p>Contributions: {{user.contributions}}</p>
               <p>Published repositories: {{user.public_repos}}</p>
               <p>Published gists: {{user.public_gists}}</p>
               <p>Followers: {{user.followers}}</p>
+
             </div>
           </div>
         </div>

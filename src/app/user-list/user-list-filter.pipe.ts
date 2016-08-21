@@ -24,10 +24,10 @@ export class UserListFilterPipe implements PipeTransform {
   private checkUsersFieldsMatchFilter(user: User, criteria:FilteringCriteria, property:string):boolean{
     let matchFilter = true;
     if(criteria['min_' + property]){
-      matchFilter &= user[property] >= criteria['min_' + property];
+      matchFilter = matchFilter && user[property] >= criteria['min_' + property];
     }
     if(criteria['max_' + property]){
-      matchFilter &= user[property] <= criteria['max_' + property];
+      matchFilter = matchFilter && user[property] <= criteria['max_' + property];
     }
     return matchFilter;
 
