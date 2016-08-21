@@ -1,25 +1,32 @@
-<div *ngIf="!users"><img src="assets/loading.gif"></div>
+<div *ngIf="!users">
+  <img src="assets/loading.gif" class="center-block">
+</div>
 <div *ngIf="users">
-  <div *ngFor="let user of users" class="row">
-    <div class="col-md-2">
-      <div class="thumbnail">
-        <img [src]="user.avatar_url" width="150px"  height="150px"/>
-      </div>
+  <div class="row center-block">
+    <div class="col-md-4">
+      <user-filter-options [filter]="filter"></user-filter-options>
     </div>
-    <div class="col-md-10">
-      <div class="thumbnail">
-        <div class="caption">
-          <h4><a href="#">{{user.login}}</a>
-          </h4>
-          <p>Contributions: {{user.contributions}}</p>
-          <p>Published repositories: {{user.public_repos}}</p>
-          <p>Published gists: {{user.public_gists}}</p>
-          <p>Followers: {{user.followers}}</p>
+    <div class="col-md-8">
+      <div *ngFor="let user of (users | UserListFilter:filter)" class="row">
+        <div class="col-md-2">
+          <img [src]="user.avatar_url" class="img-circle" width="110px"  height="110px"/>
+        </div>
+        <div class="col-md-10">
+          <div class="thumbnail">
+            <div class="caption">
+              <h4><a href="#">{{user.login}}</a>
+              </h4>
+              <p>Contributions: {{user.contributions}}</p>
+              <p>Published repositories: {{user.public_repos}}</p>
+              <p>Published gists: {{user.public_gists}}</p>
+              <p>Followers: {{user.followers}}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <hr />
   </div>
-
 </div>
 
 

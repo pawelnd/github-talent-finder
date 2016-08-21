@@ -177,7 +177,7 @@ module.exports = {
         exclude: [helpers.root('src/index.html')]
       },
       {
-        test: /.less$/,
+        test: /\.less$/,
         exclude: /node_modules/,
         loader: 'raw-loader!less-loader'
       },

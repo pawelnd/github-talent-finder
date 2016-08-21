@@ -5,15 +5,17 @@ import { UserService } from './services/user.service';
 import {User} from "./user";
 import {RepositoryInfoService} from "./services/repository.service";
 import { Router,ActivatedRoute } from '@angular/router';
+import {UserFilterComponent} from "./user-filter/user-filter.component";
+import {FilteringCriteria} from "./filtering-criteria";
+import {UserListFilterPipe} from "./user-list-filter.pipe";
 /*
  */
 @Component({
   selector: 'user-list',
-  styles: [
-    require('./user-list.style.less').toString()
-  ],
   templateUrl: './user-list.component.template.html',
-  providers: [UserService,RepositoryInfoService]
+  providers: [UserService,RepositoryInfoService],
+  directives:[UserFilterComponent],
+  pipes: [UserListFilterPipe]
 })
 export class UserListComponent {
   constructor(
@@ -23,9 +25,11 @@ export class UserListComponent {
 
   users:User[];
   sub: any;
+  filter:FilteringCriteria;
 
   ngOnInit() {
     this.getUsers();
+    this.filter  = new FilteringCriteria();
   }
 
   getUsers() {
