@@ -1,6 +1,7 @@
 
 export class Repo {
   name:string = null;
+  full_name:string = null;
   description:string = null;
   homepage:string = null;
   created_at:string = null;

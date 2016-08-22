@@ -8,6 +8,7 @@
       <div class="panel-body">
         <div class="col-md-12">
           <p *ngIf="repo.name"><b>Name</b>: {{repo.name}}</p>
+          <p *ngIf="repo.full_name"><b>Link</b>: <a href="https://github.com/{{repo.full_name}}" target="_blank">https://github.com/{{repo.full_name}}</a></p>
           <p *ngIf="repo.description"><b>Description:</b> {{repo.description}}</p>
           <p *ngIf="repo.homepage"><b>Homepage</b>:  <a href="{{repo.homepage}}" target="_blank">{{repo.homepage}}</a></p>
           <p *ngIf="repo.created_at"><b>Creation date</b>: {{repo.created_at | date}}</p>
