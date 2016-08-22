@@ -5,6 +5,7 @@ import {User} from "../user";
 import {Repo} from "../repo";
 import {RepositoryInfoService} from "./repository.service";
 import {BaseService} from "./base.service";
+import {UserDetailedInfo} from "../modal/user-detailed-info";
 
 @Injectable()
 export class UserService extends BaseService {
@@ -43,9 +44,17 @@ export class UserService extends BaseService {
       this.getContributors(userName,repositoryName)
           .then(users => this.fetchStatistics(users))
           .then(users => resolve(users))
-
     });
     return resultPromise;
+  }
+
+  getDetailedUserInfo(userName:string){
+    return this.http.get(`https://api.github.com/users/${userName}?access_token=58c694b546f35945a572a4953940aeb94558a72b`)
+      .toPromise()
+      .then(response => {
+        return response.json() as UserDetailedInfo[]
+      })
+      .catch(this.handleError);
   }
 
   /**
