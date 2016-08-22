@@ -19,8 +19,7 @@ import 'jquery';
 })
 export class App {
   viewContainerRef:ViewContainerRef;
-  constructor(
-    public appState: AppState, viewContainerRef:ViewContainerRef,
+  constructor( viewContainerRef:ViewContainerRef,
     private router:Router) {
     /**
     * Hack for displaying bootstrap modal as it was suggested in documentation
@@ -29,9 +28,6 @@ export class App {
     this.viewContainerRef = viewContainerRef;
   }
 
-  ngOnInit() {
-    console.log('Initial App State', this.appState.state);
-  }
 
   goToRepo(projectName:string){
     this.router.navigate(['/check', projectName]);
