@@ -30,6 +30,7 @@ export class UserListComponent {
   users:User[];
   sub: any;
   filter:FilteringCriteria;
+  isLoaded : boolean = false;
 
   ngOnInit() {
     this.getUsers();
@@ -38,16 +39,23 @@ export class UserListComponent {
 
   getUsers() {
     this.sub = this.route.params.subscribe(params => {
+      this.isLoaded = false;
       let project = params["project"];
       let repository = params["repository"];
 
       if(project && repository){
         this.userService.getUsersStatsForRepository(project,repository).then(
-          users => this.users = users
+          users => {
+            this.users = users;
+            this.isLoaded = true;
+          }
         );
       }else if(project){
         this.userService.getUsersStatsForProject(project).then(
-          users => this.users = users
+          users => {
+            this.users = users;
+            this.isLoaded = true;
+          }
         );
       }else{
         this.users =[];

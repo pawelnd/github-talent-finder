@@ -1,7 +1,7 @@
-<div *ngIf="!users">
+<div *ngIf="!isLoaded">
   <img src="assets/loading.gif" class="center-block">
 </div>
-<div *ngIf="users">
+<div *ngIf="isLoaded">
   <div class="row center-block">
     <div class="col-md-4">
       <user-filter-options [filter]="filter"></user-filter-options>

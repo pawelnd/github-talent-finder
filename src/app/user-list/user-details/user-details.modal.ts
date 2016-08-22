@@ -5,6 +5,7 @@ import {MODAL_DIRECTIVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap';
 import {ModalDirective} from 'ng2-bootstrap/components/modal/modal.component';
 import {CORE_DIRECTIVES} from '@angular/common';
 import {User} from "../user";
+import {Repo} from "../repo";
 import {UserDetailedInfo} from "./user-detailed-info";
 import {UserService} from "../../services/user.service";
 import {RepositoryInfoService} from "../../services/repository.service";
@@ -43,7 +44,6 @@ export class UserDetailsModal {
   }
 
   goToRepo(repo:Repo){
-    console.log(repo);
     this.router.navigate(['/check', repo.full_name]);
   }
 }

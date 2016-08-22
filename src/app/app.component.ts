@@ -2,6 +2,7 @@
  * Angular 2 decorators and services
  */
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppState } from './app.service';
 import 'jquery';
 /*
@@ -19,7 +20,8 @@ import 'jquery';
 export class App {
   viewContainerRef:ViewContainerRef;
   constructor(
-    public appState: AppState, viewContainerRef:ViewContainerRef) {
+    public appState: AppState, viewContainerRef:ViewContainerRef,
+    private router:Router) {
     /**
     * Hack for displaying bootstrap modal as it was suggested in documentation
      * @see <a href="http://valor-software.com/ng2-bootstrap/#/modals">http://valor-software.com/ng2-bootstrap/#/modals</a>
@@ -31,4 +33,7 @@ export class App {
     console.log('Initial App State', this.appState.state);
   }
 
+  goToRepo(projectName:string){
+    this.router.navigate(['/check', projectName]);
+  }
 }
