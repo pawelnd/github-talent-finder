@@ -4,10 +4,6 @@ import {RepositoryInfo} from "./repository-info/repository-info.component";
 
 @Component({
   selector: 'repository',
-  pipes: [ ],
-  styles: [
-    require('./repository.style.less').toString()
-  ],
   templateUrl: './repository.template.html',
   directives: [
     UserListComponent, RepositoryInfo

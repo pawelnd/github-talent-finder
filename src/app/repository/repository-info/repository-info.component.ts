@@ -25,7 +25,6 @@ export class RepositoryInfo {
       let repository = params["repository"];
       this.repoService.getRepositoriesForUser(project)
         .then(repos => {
-          console.log(repos);
           this.repo = repos.find(repo => repo.name == repository)
         });
     });
