@@ -8,7 +8,7 @@ export const routes: RouterConfig = [
   { path: 'check/:project', component: ProjectComponent },
   {
     path: '',
-    redirectTo: '/check/aurelia/framework',
+    redirectTo: '/check/angular',
     pathMatch: 'full'
   }
 ];
