@@ -1,8 +1,8 @@
 import { Injectable , Inject} from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import {User} from "../user";
-import {Repo} from "../repo";
+import {User} from "../user-list/user";
+import {Repo} from "../user-list/repo";
 import {BaseService} from "./base.service";
 
 @Injectable()

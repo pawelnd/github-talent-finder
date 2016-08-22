@@ -8,7 +8,7 @@ import {ModalDirective} from 'ng2-bootstrap/components/modal/modal.component';
 import {CORE_DIRECTIVES} from '@angular/common';
 import {User} from "../user";
 import {UserDetailedInfo} from "./user-detailed-info";
-import {UserService} from "../services/user.service";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'user-details-modal',
@@ -59,7 +59,6 @@ export class UserDetailsModal {
     this.childModal.show();
     this.userService.getDetailedUserInfo(user.login)
       .then(details => {
-        console.log(details);
         this.userDetails = details
       })
   }

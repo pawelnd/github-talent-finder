@@ -1,14 +1,14 @@
 /*
  */
 import { Component } from '@angular/core';
-import { UserService } from './services/user.service';
+import { UserService } from '../services/user.service';
 import {User} from "./user";
-import {RepositoryInfoService} from "./services/repository.service";
+import {RepositoryInfoService} from "../services/repository.service";
 import { Router,ActivatedRoute } from '@angular/router';
 import {UserFilterComponent} from "./user-filter/user-filter.component";
 import {FilteringCriteria} from "./filtering-criteria";
 import {UserListFilterPipe} from "./user-list-filter.pipe";
-import {UserDetailsModal} from "./modal/user-details.modal";
+import {UserDetailsModal} from "./user-details/user-details.modal";
 /*
  */
 @Component({
