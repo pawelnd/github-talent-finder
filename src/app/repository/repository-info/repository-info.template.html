@@ -1,0 +1,23 @@
+<div *ngIf="!repo">
+  <img src="assets/loading.gif" class="center-block">
+</div>
+<div *ngIf="repo">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">Repository info</div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <p *ngIf="repo.name"><b>Name</b>: {{repo.name}}</p>
+          <p *ngIf="repo.description"><b>Description:</b> {{repo.description}}</p>
+          <p *ngIf="repo.homepage"><b>Homepage</b>:  <a href="{{repo.homepage}}" target="_blank">{{repo.homepage}}</a></p>
+          <p *ngIf="repo.created_at"><b>Creation date</b>: {{repo.created_at | date}}</p>
+          <p *ngIf="repo.updated_at"><b>Last update</b>: {{repo.updated_at | date}}</p>
+          <p *ngIf="repo.language"><b>Language</b>: {{repo.language}}</p>
+          <p *ngIf="repo.forks_count"><b>Amount of forks</b>: {{repo.forks_count}}</p>
+          <p *ngIf="repo.open_issues_count"><b>Open issues</b>: {{repo.open_issues_count}}</p>
+          <p *ngIf="repo.description"><b>Amount of watchers</b>: {{repo.watchers}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
