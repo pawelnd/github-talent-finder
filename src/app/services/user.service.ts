@@ -12,7 +12,7 @@ export class UserService extends BaseService {
   constructor( private http:Http, private repoService:RepositoryInfoService) { super()}
 
   private getContributors(userName:string, repositoryName:string):Promise<User[]> {
-    return this.http.get(`https://api.github.com/repos/${userName}/${repositoryName}/contributors?access_token=58c694b546f35945a572a4953940aeb94558a72b`)
+    return this.http.get(this.addAccessToken(`https://api.github.com/repos/${userName}/${repositoryName}/contributors`))
       .toPromise()
       .then(response => {
         return response.json() as User[]
@@ -49,7 +49,7 @@ export class UserService extends BaseService {
   }
 
   getDetailedUserInfo(userName:string){
-    return this.http.get(`https://api.github.com/users/${userName}?access_token=58c694b546f35945a572a4953940aeb94558a72b`)
+    return this.http.get(this.addAccessToken(`https://api.github.com/users/${userName}`))
       .toPromise()
       .then(response => {
         return response.json() as UserDetailedInfo
@@ -87,7 +87,7 @@ export class UserService extends BaseService {
   private fetchStatistics(users:User[]):Promise<User[]>{
     let statisticResolvers = new Array();
     for(let user of users){
-      statisticResolvers.push(this.http.get(`https://api.github.com/users/${user.login}?access_token=58c694b546f35945a572a4953940aeb94558a72b`)
+      statisticResolvers.push(this.http.get(this.addAccessToken(`https://api.github.com/users/${user.login}`))
         .toPromise()
         .then(response => {
           user.public_repos = response.json().public_repos;
