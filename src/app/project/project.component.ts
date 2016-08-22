@@ -2,17 +2,17 @@ import { Component } from '@angular/core';
 import { UserListComponent } from '../user-list/user-list.component';
 
 @Component({
-  selector: 'home',
+  selector: 'project',
   pipes: [ ],
   styles: [
-    require('./home.style.less').toString()
+    require('./project.style.less').toString()
   ],
-  templateUrl: './home.template.html',
+  templateUrl: './project.template.html',
   directives: [
     UserListComponent
   ]
 })
-export class HomeComponent {
+export class ProjectComponent {
   constructor() {
   }
 }
