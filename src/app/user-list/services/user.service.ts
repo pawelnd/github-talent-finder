@@ -10,7 +10,7 @@ import {BaseService} from "./base.service";
 export class UserService extends BaseService {
   constructor( private http:Http, private repoService:RepositoryInfoService) { super()}
 
-  getUsersForRepository(userName:string,repositoryName:string):Promise<User[]> {
+  private getContributors(userName:string, repositoryName:string):Promise<User[]> {
     return this.http.get(`https://api.github.com/repos/${userName}/${repositoryName}/contributors?access_token=58c694b546f35945a572a4953940aeb94558a72b`)
       .toPromise()
       .then(response => {
@@ -19,13 +19,13 @@ export class UserService extends BaseService {
       .catch(this.handleError);
   }
 
-  getUsersForProject(userName:string):Promise<User[]> {
+  getUsersStatsForProject(userName:string):Promise<User[]> {
     let resultPromise:Promise<User[]> = new Promise<User[]>((resolve, reject) => {
       let repositoryResolvers = new Array();
 
       this.repoService.getRepositoriesForUser(userName).then(repos=>{
         for(let repo of repos){
-          repositoryResolvers.push(this.getUsersForRepository(userName,repo.name));
+          repositoryResolvers.push(this.getContributors(userName,repo.name));
         }
 
         Promise.all(repositoryResolvers)
@@ -35,7 +35,16 @@ export class UserService extends BaseService {
       })
     });
 
+    return resultPromise;
+  }
 
+  getUsersStatsForRepository(userName:string, repositoryName:string):Promise<User[]> {
+    let resultPromise:Promise<User[]> = new Promise<User[]>((resolve, reject) => {
+      this.getContributors(userName,repositoryName)
+          .then(users => this.fetchStatistics(users))
+          .then(users => resolve(users))
+
+    });
     return resultPromise;
   }
 

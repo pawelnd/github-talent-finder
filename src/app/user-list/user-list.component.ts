@@ -8,14 +8,18 @@ import { Router,ActivatedRoute } from '@angular/router';
 import {UserFilterComponent} from "./user-filter/user-filter.component";
 import {FilteringCriteria} from "./filtering-criteria";
 import {UserListFilterPipe} from "./user-list-filter.pipe";
+import {UserDetailsModal} from "./modal/user-details.modal";
 /*
  */
 @Component({
   selector: 'user-list',
   templateUrl: './user-list.component.template.html',
   providers: [UserService,RepositoryInfoService],
-  directives:[UserFilterComponent],
-  pipes: [UserListFilterPipe]
+  directives:[UserFilterComponent, UserDetailsModal],
+  pipes: [UserListFilterPipe],
+  styles: [
+    require('./user-list.style.less')
+  ]
 })
 export class UserListComponent {
   constructor(
@@ -38,19 +42,17 @@ export class UserListComponent {
       let repository = params["repository"];
 
       if(project && repository){
-        this.userService.getUsersForRepository(project,repository).then(
+        this.userService.getUsersStatsForRepository(project,repository).then(
           users => this.users = users
         );
       }else if(project){
-        this.userService.getUsersForProject(project).then(
+        this.userService.getUsersStatsForProject(project).then(
           users => this.users = users
         );
       }else{
         this.users =[];
       }
     });
-
   }
-
 
 }

@@ -14,7 +14,7 @@
         <div class="col-md-10">
           <div class="thumbnail">
             <div class="caption">
-              <button type="button" class="btn btn btn-primary pull-right" (click)="showDetails(user)">Show details</button>
+              <button type="button" class="btn btn btn-primary pull-right" (click)="modal.showDetails(user)">Show details</button>
               <h4>
                 <a [href]="user.html_url" target="_blank">{{user.login}}</a>
               </h4>
@@ -32,4 +32,4 @@
   </div>
 </div>
 
-
+<user-details-modal #modal></user-details-modal>
