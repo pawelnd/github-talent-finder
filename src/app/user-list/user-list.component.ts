@@ -35,6 +35,8 @@ export class UserListComponent {
   sub: any;
   filter:FilteringCriteria;
   isLoaded : boolean = false;
+  currentProject:string;
+  currentRepository:string;
 
   ngOnInit() {
     this.getUsers();
@@ -44,18 +46,18 @@ export class UserListComponent {
   getUsers() {
     this.sub = this.route.params.subscribe(params => {
       this.isLoaded = false;
-      let project = params["project"];
-      let repository = params["repository"];
+      this.currentProject = params["project"];
+      this.currentRepository = params["repository"];
 
-      if(project && repository){
-        this.userService.getUsersStatsForRepository(project,repository).then(
+      if(this.currentProject && this.currentRepository){
+        this.userService.getUsersStatsForRepository(this.currentProject, this.currentRepository).then(
           users => {
             this.users = users;
             this.isLoaded = true;
           }
         );
-      }else if(project){
-        this.userService.getUsersStatsForProject(project).then(
+      }else if(this.currentProject){
+        this.userService.getUsersStatsForProject( this.currentProject).then(
           users => {
             this.users = users;
             this.isLoaded = true;
@@ -65,6 +67,10 @@ export class UserListComponent {
         this.users =[];
       }
     });
+  }
+
+  getSourceLink(){
+    return `https://github.com/${this.currentProject}${this.currentRepository?'/':''}${this.currentRepository?this.currentRepository:''}`
   }
 
 }
