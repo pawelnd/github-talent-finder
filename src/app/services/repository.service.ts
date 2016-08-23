@@ -4,10 +4,14 @@ import 'rxjs/add/operator/toPromise';
 import {User} from "../user-list/user";
 import {Repo} from "../user-list/repo";
 import {BaseService} from "./base.service";
+import {ErrorService} from "../error.service";
 
 @Injectable()
 export class RepositoryInfoService extends BaseService {
-  constructor( private http:Http) {super(); }
+  constructor( private http:Http,
+               errorService:ErrorService) {
+    super(errorService);
+  }
 
   getRepositoriesForUser(userName:string):Promise<Repo[]> {
     return this.http.get(`https://api.github.com/users/${userName}/repos` + this.addAccessToken())
@@ -15,6 +19,6 @@ export class RepositoryInfoService extends BaseService {
       .then(response => {
         return response.json() as Repo[]
       })
-      .catch(this.handleError);
+      .catch(error => this.handleError(error));
   }
 }

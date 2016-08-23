@@ -6,10 +6,15 @@ import {Repo} from "../user-list/repo";
 import {RepositoryInfoService} from "./repository.service";
 import {BaseService} from "./base.service";
 import {UserDetailedInfo} from "../user-list/user-details/user-detailed-info";
+import {ErrorService} from "../error.service";
 
 @Injectable()
 export class UserService extends BaseService {
-  constructor( private http:Http, private repoService:RepositoryInfoService) { super()}
+  constructor( private http:Http,
+               private repoService:RepositoryInfoService,
+               errorService:ErrorService) {
+    super(errorService);
+  }
 
   private getContributors(userName:string, repositoryName:string):Promise<User[]> {
     return this.http.get(`https://api.github.com/repos/${userName}/${repositoryName}/contributors`+this.addAccessToken())
@@ -66,7 +71,7 @@ export class UserService extends BaseService {
   * It sum contributions for each user for all repositories
   * */
   private mergeUsersFromDifferentRepositories(usersOfRepositories:Array<User[]>):User[]{
-    let usersCollection:User[];
+    let usersCollection:User[] = [];
 
     for(let users of usersOfRepositories){
       if(!usersCollection){
@@ -100,7 +105,7 @@ export class UserService extends BaseService {
           user.followers = response.json().followers;
           return user;
         })
-        .catch(this.handleError));
+        .catch(error => this.handleError(error)));
     }
     return Promise.all(statisticResolvers);
   }

@@ -48,29 +48,31 @@ export class UserListComponent {
       this.isLoaded = false;
       this.currentProject = params["project"];
       this.currentRepository = params["repository"];
-
+      let promise:Promise;
       if(this.currentProject && this.currentRepository){
-        this.userService.getUsersStatsForRepository(this.currentProject, this.currentRepository).then(
-          users => {
-            this.users = users;
-            this.isLoaded = true;
-          }
-        );
+        promise = this.userService.getUsersStatsForRepository(this.currentProject, this.currentRepository)
       }else if(this.currentProject){
-        this.userService.getUsersStatsForProject( this.currentProject).then(
-          users => {
-            this.users = users;
-            this.isLoaded = true;
-          }
-        );
+        promise = this.userService.getUsersStatsForProject( this.currentProject)
       }else{
-        this.users =[];
+        promise = Promise.resolve([]);
       }
+      promise.then(
+        users => {
+          this.users = users;
+          this.isLoaded = true;
+        },
+        x=>{
+          this.users = [];
+          this.isLoaded = true;
+        }
+      );
     });
   }
 
   getSourceLink(){
     return `https://github.com/${this.currentProject}${this.currentRepository?'/':''}${this.currentRepository?this.currentRepository:''}`
   }
+
+
 
 }
