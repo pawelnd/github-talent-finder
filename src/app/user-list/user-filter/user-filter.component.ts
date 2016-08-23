@@ -13,20 +13,17 @@ import {using} from "rxjs/observable/using";
     require('./user-filter.style.less')
   ]
 })
+/**
+* Component responsible for changing {@link FilteringCriteria}
+* */
 export class UserFilterComponent {
-  constructor(
-    private appRef: ApplicationRef) {
+  constructor() {
   }
   @Input()
   filter:FilteringCriteria;
 
-  ngOnInit() {
-
-  }
-
   rangeValueChanged(event, type) {
     this.filter['min_'+type] = parseInt(event.startValue);
     this.filter['max_'+type] = parseInt(event.endValue);
-    this.appRef.tick(); // this should be added to slider lib, but it is not
   }
 }

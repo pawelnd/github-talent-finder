@@ -1,5 +1,8 @@
 import {gitHubApiKey} from '../../app/configuration'
 
+/**
+* Base class for all services. Contains methods shared by all services
+* */
 export class BaseService  {
   private githubApiAccessToken : string = gitHubApiKey;
   protected handleError(error: any) {
@@ -7,9 +10,11 @@ export class BaseService  {
     return Promise.reject(error.message || error);
   }
 
-  protected addAccessToken(url){
+  protected addAccessToken(){
     if(this.githubApiAccessToken && this.githubApiAccessToken.length > 0){
-      return `${url}?access_token=${gitHubApiKey}`
+      return `?access_token=${gitHubApiKey}`
+    }else {
+      return "";
     }
   }
 }

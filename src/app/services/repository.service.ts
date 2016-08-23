@@ -10,7 +10,7 @@ export class RepositoryInfoService extends BaseService {
   constructor( private http:Http) {super(); }
 
   getRepositoriesForUser(userName:string):Promise<Repo[]> {
-    return this.http.get(this.addAccessToken(`https://api.github.com/users/${userName}/repos`))
+    return this.http.get(`https://api.github.com/users/${userName}/repos` + this.addAccessToken())
       .toPromise()
       .then(response => {
         return response.json() as Repo[]

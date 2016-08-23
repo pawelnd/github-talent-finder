@@ -21,6 +21,10 @@ import {UserDetailsModal} from "./user-details/user-details.modal";
     require('./user-list.style.less')
   ]
 })
+/**
+* Component responsible for displaying users which contributed to github project/repository
+ * It users state parameters to determine project and repository
+* */
 export class UserListComponent {
   constructor(
     public userService: UserService,

@@ -19,6 +19,10 @@ import {RepositoryInfoService} from "../../services/repository.service";
     require('./user-details.style.less')
   ]
 })
+
+/**
+* Modal component displaying user detailed information
+* */
 export class UserDetailsModal {
   constructor(
     private userService:UserService,

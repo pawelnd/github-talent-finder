@@ -12,14 +12,16 @@ export class UserService extends BaseService {
   constructor( private http:Http, private repoService:RepositoryInfoService) { super()}
 
   private getContributors(userName:string, repositoryName:string):Promise<User[]> {
-    return this.http.get(this.addAccessToken(`https://api.github.com/repos/${userName}/${repositoryName}/contributors`))
+    return this.http.get(`https://api.github.com/repos/${userName}/${repositoryName}/contributors`+this.addAccessToken())
       .toPromise()
       .then(response => {
         return response.json() as User[]
       })
       .catch(this.handleError);
   }
-
+  /**
+  * Fetches all {@link User} that contributed to  project's repository at least once
+  * */
   getUsersStatsForProject(userName:string):Promise<User[]> {
     let resultPromise:Promise<User[]> = new Promise<User[]>((resolve, reject) => {
       let repositoryResolvers = new Array();
@@ -39,6 +41,9 @@ export class UserService extends BaseService {
     return resultPromise;
   }
 
+  /**
+   * Fetches all {@link User} that contributed to given repository
+   * */
   getUsersStatsForRepository(userName:string, repositoryName:string):Promise<User[]> {
     let resultPromise:Promise<User[]> = new Promise<User[]>((resolve, reject) => {
       this.getContributors(userName,repositoryName)
@@ -49,7 +54,7 @@ export class UserService extends BaseService {
   }
 
   getDetailedUserInfo(userName:string){
-    return this.http.get(this.addAccessToken(`https://api.github.com/users/${userName}`))
+    return this.http.get(`https://api.github.com/users/${userName}` + this.addAccessToken())
       .toPromise()
       .then(response => {
         return response.json() as UserDetailedInfo
@@ -87,7 +92,7 @@ export class UserService extends BaseService {
   private fetchStatistics(users:User[]):Promise<User[]>{
     let statisticResolvers = new Array();
     for(let user of users){
-      statisticResolvers.push(this.http.get(this.addAccessToken(`https://api.github.com/users/${user.login}`))
+      statisticResolvers.push(this.http.get(`https://api.github.com/users/${user.login}` + this.addAccessToken())
         .toPromise()
         .then(response => {
           user.public_repos = response.json().public_repos;

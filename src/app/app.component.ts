@@ -5,7 +5,7 @@ import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppState } from './app.service';
 import 'jquery';
-/*
+/**
  * App Component
  * Top Level Component
  */

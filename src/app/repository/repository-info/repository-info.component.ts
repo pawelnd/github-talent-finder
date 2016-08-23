@@ -8,6 +8,10 @@ import {RepositoryInfoService} from "../../services/repository.service";
   templateUrl: './repository-info.template.html',
   providers: [RepositoryInfoService]
 })
+/**
+ * Component displays detailed information about repository
+ * IT trace state params to determine gitHub repository
+* */
 export class RepositoryInfo {
   constructor(private route: ActivatedRoute,
               private repoService:RepositoryInfoService) {

@@ -6,6 +6,10 @@ import {FilteringCriteria} from "./filtering-criteria";
   name: 'UserListFilter',
   pure: false
 })
+
+/**
+* IT filters collection of {@link User} based on given {@link FilteringCriteria}
+* */
 export class UserListFilterPipe implements PipeTransform {
   private propertiesToBeChecked:string[] = ['followers','contributions','public_repos','public_gists']
   transform(usersAll: User[], criteria:FilteringCriteria) {
