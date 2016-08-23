@@ -67,5 +67,4 @@ npm run e2e
 ```
 
 # To do list #
-* Error handling for failed requests
-* Documentation to created classes
+* Editable from UI GitHub access key
