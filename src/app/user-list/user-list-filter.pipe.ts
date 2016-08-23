@@ -13,6 +13,7 @@ import {FilteringCriteria} from "./filtering-criteria";
 export class UserListFilterPipe implements PipeTransform {
   private propertiesToBeChecked:string[] = ['followers','contributions','public_repos','public_gists']
   transform(usersAll: User[], criteria:FilteringCriteria) {
+    debugger;
     return usersAll.filter(user => this.checkUser(user,criteria));
   }
 
