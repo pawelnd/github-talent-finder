@@ -8,7 +8,6 @@ import {ToasterContainerComponent, ToasterService} from 'angular2-toaster/angula
 
 import 'jquery';
 import {ErrorService} from "./error.service";
-import {HttpError} from "./error";
 /**
  * App Component
  * Top Level Component
@@ -37,17 +36,11 @@ export class App {
     * */
     this.viewContainerRef = viewContainerRef;
     this.errorService.errorEvent.subscribe(x=>{
-      debugger;
       this.toasterService.pop('error', x.statusText || x, x.message || x);
     })
   }
 
-
   goToRepo(projectName:string){
     this.router.navigate(['/check', projectName]);
-  }
-
-  popToast(){
-    this.toasterService.pop('success', 'Args Title', 'Args Body');
   }
 }

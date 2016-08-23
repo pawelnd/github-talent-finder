@@ -1,6 +1,5 @@
 import {gitHubApiKey} from '../../app/configuration'
 import {ErrorService} from "../error.service";
-import {HttpError} from "../error";
 
 /**
 * Base class for all services. Contains methods shared by all services

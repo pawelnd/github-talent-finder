@@ -1,5 +1,4 @@
 import { Injectable, EventEmitter } from '@angular/core';
-import {HttpError} from "./error";
 
 /**
  * Instance of global service.
@@ -14,7 +13,7 @@ export class ErrorService {
 
   errorEvent: EventEmitter<any> =  new EventEmitter();
 
-  reportError(error:HttpError){
+  reportError(error:any){
     this.errorEvent.emit(error);
   }
 }

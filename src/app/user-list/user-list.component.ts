@@ -48,7 +48,7 @@ export class UserListComponent {
       this.isLoaded = false;
       this.currentProject = params["project"];
       this.currentRepository = params["repository"];
-      let promise:Promise;
+      let promise:Promise<any>;
       if(this.currentProject && this.currentRepository){
         promise = this.userService.getUsersStatsForRepository(this.currentProject, this.currentRepository)
       }else if(this.currentProject){
