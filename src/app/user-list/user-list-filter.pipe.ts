@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {User} from "./user";
-import {FilteringCriteria} from "./filtering-criteria";
+import { User } from './user';
+import { FilteringCriteria } from './filtering-criteria';
 
 @Pipe({
   name: 'UserListFilter',
@@ -8,30 +8,32 @@ import {FilteringCriteria} from "./filtering-criteria";
 })
 
 /**
-* IT filters collection of {@link User} based on given {@link FilteringCriteria}
-* */
+ * IT filters collection of {@link User} based on given {@link FilteringCriteria}
+ */
 export class UserListFilterPipe implements PipeTransform {
-  private propertiesToBeChecked:string[] = ['followers','contributions','public_repos','public_gists']
-  transform(usersAll: User[], criteria:FilteringCriteria) {
-    debugger;
-    return usersAll.filter(user => this.checkUser(user,criteria));
+  private PROPERTIES_TO_BE_CHECKED: string[] = ['followers', 'contributions',
+    'public_repos', 'public_gists'];
+  transform(usersAll: User[], criteria: FilteringCriteria) {
+    return usersAll.filter(user => this.checkUser(user, criteria));
   }
 
-  private checkUser(user: User, criteria:FilteringCriteria):boolean{
-    for(let property of this.propertiesToBeChecked){
-      if(!this.checkUsersFieldsMatchFilter(user,criteria, property)){
+  private checkUser(user: User, criteria: FilteringCriteria): boolean{
+    for(let property of this.PROPERTIES_TO_BE_CHECKED){
+      if(!this.checkUsersFieldsMatchFilter(user, criteria, property)){
         return false;
       }
     }
     return true;
   }
 
-  private checkUsersFieldsMatchFilter(user: User, criteria:FilteringCriteria, property:string):boolean{
+  private checkUsersFieldsMatchFilter(user: User,
+                                      criteria: FilteringCriteria,
+                                      property: string): boolean {
     let matchFilter = true;
-    if(criteria['min_' + property]){
+    if (criteria['min_' + property]) {
       matchFilter = matchFilter && user[property] >= criteria['min_' + property];
     }
-    if(criteria['max_' + property]){
+    if (criteria['max_' + property]) {
       matchFilter = matchFilter && user[property] <= criteria['max_' + property];
     }
     return matchFilter;

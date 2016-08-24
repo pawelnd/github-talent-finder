@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import {Repo} from "../../user-list/repo";
-import {RepositoryInfoService} from "../../services/repository.service";
+import { Repo } from  '../../user-list/repo';
+import { RepositoryInfoService } from  '../../services/repository.service';
 
 @Component({
   selector: 'repository-info',
@@ -11,12 +11,8 @@ import {RepositoryInfoService} from "../../services/repository.service";
 /**
  * Component displays detailed information about repository
  * IT trace state params to determine gitHub repository
-* */
+ */
 export class RepositoryInfo {
-  constructor(private route: ActivatedRoute,
-              private repoService:RepositoryInfoService) {
-  }
-
   repo: Repo;
   sub: any;
   ngOnInit() {
@@ -25,12 +21,15 @@ export class RepositoryInfo {
 
   getRepositoryInfo() {
     this.sub = this.route.params.subscribe(params => {
-      let project = params["project"];
-      let repository = params["repository"];
+      let project = params['project'];
+      let repository = params['repository'];
       this.repoService.getRepositoriesForUser(project)
         .then(repos => {
-          this.repo = repos.find(repo => repo.name == repository)
+          this.repo = repos.find(repo => repo.name === repository);
         });
     });
+  }
+  constructor(private route: ActivatedRoute,
+              private repoService: RepositoryInfoService) {
   }
 }

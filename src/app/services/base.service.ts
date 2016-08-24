@@ -1,13 +1,11 @@
-import {gitHubApiKey} from '../../app/configuration'
-import {ErrorService} from "../error.service";
+import { gitHubApiKey } from '../../app/configuration';
+import { ErrorService } from '../error.service';
 
 /**
-* Base class for all services. Contains methods shared by all services
-* */
+ * Base class for all services. Contains methods shared by all services
+ */
 export class BaseService  {
-  constructor(private errorService:ErrorService){
-  }
-  private githubApiAccessToken : string = gitHubApiKey;
+  private githubApiAccessToken: string = gitHubApiKey;
 
   protected handleError(error) {
     this.errorService.reportError(error);
@@ -15,10 +13,13 @@ export class BaseService  {
   }
 
   protected addAccessToken(){
-    if(this.githubApiAccessToken && this.githubApiAccessToken.length > 0){
-      return `?access_token=${gitHubApiKey}`
+    if ( this.githubApiAccessToken && this.githubApiAccessToken.length > 0){
+      return `?access_token=${gitHubApiKey}`;
     }else {
-      return "";
+      return '';
     }
+  }
+
+  constructor(private errorService: ErrorService){
   }
 }

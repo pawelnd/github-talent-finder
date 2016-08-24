@@ -4,10 +4,10 @@
 import { Component, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppState } from './app.service';
-import {ToasterContainerComponent, ToasterService} from 'angular2-toaster/angular2-toaster';
+import { ToasterContainerComponent, ToasterService } from 'angular2-toaster/angular2-toaster';
 
 import 'jquery';
-import {ErrorService} from "./error.service";
+import { ErrorService } from './error.service';
 /**
  * App Component
  * Top Level Component
@@ -25,22 +25,22 @@ import {ErrorService} from "./error.service";
   templateUrl: './app.component.template.html'
 })
 export class App {
-  viewContainerRef:ViewContainerRef;
-  constructor( viewContainerRef:ViewContainerRef,
-     private router:Router,
+  viewContainerRef: ViewContainerRef;
+  constructor( viewContainerRef: ViewContainerRef,
+     private router: Router,
      private toasterService: ToasterService,
-     private errorService:ErrorService) {
+     private errorService: ErrorService) {
     /**
-    * Hack for displaying bootstrap modal as it was suggested in documentation
-     * @see <a href="http://valor-software.com/ng2-bootstrap/#/modals">http://valor-software.com/ng2-bootstrap/#/modals</a>
-    * */
+     * Hack for displaying bootstrap modal as it was suggested in documentation
+     * @see http://valor-software.com/ng2-bootstrap/#/modals
+     */
     this.viewContainerRef = viewContainerRef;
-    this.errorService.errorEvent.subscribe(x=>{
+    this.errorService.errorEvent.subscribe(x => {
       this.toasterService.pop('error', x.statusText || x, x.message || x);
-    })
+    });
   }
 
-  goToRepo(projectName:string){
+  goToRepo(projectName: string) {
     this.router.navigate(['/check', projectName]);
   }
 }

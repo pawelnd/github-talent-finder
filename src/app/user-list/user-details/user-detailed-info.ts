@@ -4,6 +4,6 @@ export class UserDetailedInfo{
   blog: string;
   company: string;
   location: string;
-  hireable:string;
+  hireable: string;
   bio: string;
 }
