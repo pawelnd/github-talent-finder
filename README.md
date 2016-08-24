@@ -60,11 +60,5 @@ npm run test
 npm run watch:test
 ```
 
-### run end-to-end tests
-```bash
-# make sure you have your server running in another terminal
-npm run e2e
-```
-
 # To do list #
 * Editable from UI GitHub access key
