@@ -11,6 +11,8 @@ npm install
 
 # start the server
 npm start
+
+# then go to http://localhost:3000 and enjoy :)
 ```
 
 
