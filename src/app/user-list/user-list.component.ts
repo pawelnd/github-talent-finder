@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserFilterComponent } from './user-filter/user-filter.component';
 import { FilteringCriteria } from './filtering-criteria';
 import { UserListFilterPipe } from './user-list-filter.pipe';
+import { UserListSorterPipe } from './user-list-sorter.pipe';
 import { UserDetailsModal } from './user-details/user-details.modal';
 
 @Component({
@@ -13,7 +14,7 @@ import { UserDetailsModal } from './user-details/user-details.modal';
   templateUrl:  './user-list.component.template.html',
   providers:  [UserService, RepositoryInfoService],
   directives:  [UserFilterComponent, UserDetailsModal],
-  pipes:  [UserListFilterPipe],
+  pipes:  [UserListFilterPipe, UserListSorterPipe],
   styles:  [
     require('./user-list.style.less')
   ]
@@ -23,10 +24,6 @@ import { UserDetailsModal } from './user-details/user-details.modal';
  * It users state parameters to determine project and repository
  */
 export class UserListComponent {
-  constructor(private userService: UserService,
-              private route: ActivatedRoute) {
-  }
-
   users: User[];
   sub: any;
   filter: FilteringCriteria;
@@ -72,5 +69,7 @@ export class UserListComponent {
       `${this.currentRepository ? this.currentRepository :  ''}`;
   }
 
-
+  constructor(private userService: UserService,
+              private route: ActivatedRoute) {
+  }
 }

@@ -11,7 +11,7 @@
       <user-filter-options [filter]="filter"></user-filter-options>
     </div>
     <div class="col-md-8">
-      <div *ngFor="let user of (users | UserListFilter:filter)" class="row">
+      <div *ngFor="let user of (users | UserListFilter:filter | UserListSorter)" class="row">
         <div class="col-md-2">
           <img [src]="user.avatar_url" class="img-circle" width="110px"  height="110px"/>
         </div>
