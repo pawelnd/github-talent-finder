@@ -1,4 +1,7 @@
-
+/**
+ * Properties of this file corresponds to fields returned by API
+ * That is why properties names does not obey common practices and aren't in camel case
+ */
 export class User {
   /*
   * General info
